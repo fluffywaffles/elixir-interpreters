@@ -11,14 +11,6 @@ defmodule Interpreters.Macros do
   end
 end
 
-defmodule Interpreters do
-  import Interpreters.Macros
-
-  defmodule IInterpreter do
-    @callback interpret() :: nil
-  end
-end
-
 # NOTE(jordan): this doesn't really belong here, but I was having fun figuring out IO.stream
 defmodule WhitespaceTokenizer do
   def tokenize() do
@@ -36,8 +28,6 @@ defmodule WhitespaceTokenizer do
 end
 
 defmodule Interpreters.Echo do
-  @behaviour Interpreters.IInterpreter
-
   import Interpreters.Macros
 
   # NOTE(jordan): anonymous functions can pattern match!
@@ -49,8 +39,6 @@ defmodule Interpreters.Echo do
 end
 
 defmodule Interpreters.Calculator do
-  @behaviour Interpreters.IInterpreter
-
   import Interpreters.Macros
 
   create_interpreter! fn
