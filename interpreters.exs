@@ -1,6 +1,7 @@
 defmodule Interpreters.Macros do
   defmacro create_interpreter!(fun) do
     quote do
+      @spec interpret() :: nil
       def interpret() do
         input = IO.stream :stdio, :line
         for line <- Stream.take_while input, &(&1 != "exit\n") do
@@ -13,6 +14,7 @@ end
 
 # NOTE(jordan): this doesn't really belong here, but I was having fun figuring out IO.stream
 defmodule WhitespaceTokenizer do
+  @spec tokenize() :: nil
   def tokenize() do
     ios = IO.stream(:stdio, :line)
 
